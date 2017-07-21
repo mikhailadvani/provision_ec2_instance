@@ -1,0 +1,11 @@
+- name: Create security group(s)
+  ec2_group:
+    aws_access_key: "{{api_keys.ec2.aws_access_key_id}}"
+    aws_secret_key: "{{api_keys.ec2.aws_secret_access_key}}"
+    name: "{{item.name}}"
+    description: "{{item.description}}"
+    vpc_id: "{{vpc_id}}"
+    rules: "{{item.rules}}"
+    rules_egress: "{{item.rules_egress|default(omit)}}"
+    region: "{{aws_region}}"
+  with_items: "{{security_groups}}"

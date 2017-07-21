@@ -1,0 +1,27 @@
+- name: Create SSH key pair
+  ec2_key:
+    aws_access_key: "{{api_keys.ec2.aws_access_key_id}}"
+    aws_secret_key: "{{api_keys.ec2.aws_secret_access_key}}"
+    region: "{{aws_region}}"
+    name: default
+    key_material: "{{lookup('file','keys/id_rsa.pub')}}"
+    state: present
+
+- name: Create instance
+  ec2:
+    aws_access_key: "{{api_keys.ec2.aws_access_key_id}}"
+    aws_secret_key: "{{api_keys.ec2.aws_secret_access_key}}"
+    assign_public_ip: "{{instance.assign_public_ip|default(omit)}}"
+    instance_type: "{{instance.instance_type}}"
+    instance_tags: "{{instance.tags}}"
+    count_tag: "{{instance.tags}}"
+    exact_count: "{{instance.count}}"
+    group: "{{security_groups|map(attribute='name')|list}}"
+    image: "{{instance.ami_id|default(default_ami_id)}}"
+    key_name: "{{instance.key}}"
+    region: "{{aws_region}}"
+    source_dest_check: "{{instance.source_dest_check|default(omit)}}"
+    wait: yes
+    volumes: "{{instance.volumes|map(attribute='EBSSpecifications')|list}}"
+    vpc_subnet_id: "{{subnet_id}}"
+    termination_protection: "{{instance.termination_protection|default(true)}}"

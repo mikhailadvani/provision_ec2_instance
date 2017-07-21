@@ -1,0 +1,11 @@
+---
+# tasks file for provision_ec2_instance
+
+- name: Identify VPC/subnet to launch the subnet in
+  include: get_instance_placement_details.yml
+
+- name: Create/update security groups
+  include: define_security_groups.yml
+
+- namme: Scale instances
+  include: launch_instance.yml

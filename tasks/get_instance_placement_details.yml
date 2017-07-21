@@ -1,0 +1,20 @@
+
+- name: Get subnet details from AWS using Subnet name
+  ec2_vpc_subnet_facts:
+    aws_access_key: "{{api_keys.ec2.aws_access_key_id}}"
+    aws_secret_key: "{{api_keys.ec2.aws_secret_access_key}}"
+    region: "{{aws_region}}"
+    filters:
+      "tag:Name": "{{instance.subnet_name}}"
+  register: subnet_facts_response
+  check_mode: no
+
+- name: Verify only one subnet is returned
+  assert:
+    that: subnet_facts_response.subnets|length == 1
+    msg: "{{subnet_facts_response.subnets|length}} found with name {{instance.subnet_name}}. One expected"
+
+- name: Get VPC and subnet id
+  set_fact:
+    vpc_id: "{{subnet_facts_response.subnets[0].vpc_id}}"
+    subnet_id: "{{subnet_facts_response.subnets[0].id}}"

@@ -1,7 +1,7 @@
 provision_ec2_instance
 -------
 
-[![Build Status](https://travis-ci.org/mikhailadvani/provision_ec2_instance.svg?branch=master)](https://travis-ci.org/mikhailadvani/create_vpc) [![Galaxy](https://img.shields.io/badge/ansible--galaxy-mikhailadvani.create_vpc-blue.svg)](https://galaxy.ansible.com/mikhailadvani/provision_ec2_instance)
+[![Build Status](https://travis-ci.org/mikhailadvani/provision_ec2_instance.svg?branch=master)](https://travis-ci.org/mikhailadvani/provision_ec2_instance) [![Galaxy](https://img.shields.io/badge/ansible--galaxy-mikhailadvani.provision_ec2_instance-blue.svg)](https://galaxy.ansible.com/mikhailadvani/provision_ec2_instance)
 
 
 Ansible role to provision EC2 instances with security group(s)

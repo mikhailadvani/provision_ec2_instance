@@ -3,7 +3,7 @@
     aws_access_key: "{{api_keys.ec2.aws_access_key_id}}"
     aws_secret_key: "{{api_keys.ec2.aws_secret_access_key}}"
     region: "{{aws_region}}"
-    name: default
+    name: "{{instance.key}}"
     key_material: "{{lookup('file','keys/id_rsa.pub')}}"
     state: present
 

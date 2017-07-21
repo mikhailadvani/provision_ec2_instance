@@ -18,6 +18,7 @@ Setup the following vars and include them in the playbook before execution
     instance:
       tags: { "Name" : "Instance-1" }                                           #Dictionary of tags to be associated to the instance
       count: 1                                                                  #Number of instances with the particular tags to be created
+      ami_id: ami-e6f48789                                                      #The AMI ID to be used while provisioning the instance
       instance_type: "t2.micro"                                                 #The type of the instance
       assign_public_ip: yes                                                     #Is public IP to be assigned
       key: "key-1"                                                              #The name of the SSH key pair
@@ -35,7 +36,9 @@ Setup the following vars and include them in the playbook before execution
         rules:                                                                  #Inbound security group rules
           - {proto: tcp, from_port: 0, to_port: 65535, cidr_ip: "0.0.0.0/0" }
         rules_egress:                                                           #Outbound security group rules
-          - {proto: tcp, from_port: 0, to_port: 65535, cidr_ip: "0.0.0.0/0" }   
+          - {proto: tcp, from_port: 0, to_port: 65535, cidr_ip: "0.0.0.0/0" }
+             
+Additionally, a folder named `keys` with `id_rsa` and `id_rsa.pub` are needed for key pair creation          
 
 ### Example Playbook
 

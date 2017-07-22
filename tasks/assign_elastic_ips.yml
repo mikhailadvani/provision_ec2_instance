@@ -1,0 +1,16 @@
+
+- name: Assert that number of elastic IPs is same as instance count
+  assert:
+    msg: "Instances provisioned: {{ec2.tagged_instances|length}}. Elastic IPs defined: {{instance.elastic_ips}}"
+    that: instance.elastic_ips|length == ec2.tagged_instances|length
+
+- name: Assign elastic IPs to created instances
+  ec2_eip:
+    aws_access_key: "{{api_keys.ec2.aws_access_key_id}}"
+    aws_secret_key: "{{api_keys.ec2.aws_secret_access_key}}"
+    device_id: "{{item.1.id}}"
+    public_ip: "{{item.0}}"
+    region: "{{aws_region}}"
+  with_together:
+    - "{{instance.elastic_ips}}"
+    - "{{ec2.tagged_instances}}"

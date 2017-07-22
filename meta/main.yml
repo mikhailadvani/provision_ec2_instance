@@ -1,6 +1,6 @@
 galaxy_info:
   author: Mikhail Advani
-  description: Ansible role to provision EC2 instances with security group(s)
+  description: Ansible role to provision EC2 instances with security group(s) and elastic IPs
   license: Apache
 
   min_ansible_version: 2.3

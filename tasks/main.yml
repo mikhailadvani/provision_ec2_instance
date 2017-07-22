@@ -7,5 +7,10 @@
 - name: Create/update security groups
   include: define_security_groups.yml
 
-- namme: Scale instances
+- name: Scale instances
   include: launch_instance.yml
+
+- name: Assign elastic IPs
+  include: assign_elastic_ips.yml
+  when: instance.elastic_ips is defined
+

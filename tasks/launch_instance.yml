@@ -25,3 +25,4 @@
     volumes: "{{instance.volumes|map(attribute='EBSSpecifications')|list}}"
     vpc_subnet_id: "{{subnet_id}}"
     termination_protection: "{{instance.termination_protection|default(true)}}"
+  register: ec2

@@ -4,7 +4,7 @@ provision_ec2_instance
 [![Build Status](https://travis-ci.org/mikhailadvani/provision_ec2_instance.svg?branch=master)](https://travis-ci.org/mikhailadvani/provision_ec2_instance) [![Galaxy](https://img.shields.io/badge/ansible--galaxy-mikhailadvani.provision_ec2_instance-blue.svg)](https://galaxy.ansible.com/mikhailadvani/provision_ec2_instance)
 
 
-Ansible role to provision EC2 instances with security group(s)
+Ansible role to provision EC2 instances with security group(s) and elastic IPs
 
 ### Required variables
 
@@ -23,6 +23,8 @@ Setup the following vars and include them in the playbook before execution
       assign_public_ip: yes                                                     #Is public IP to be assigned
       key: "key-1"                                                              #The name of the SSH key pair
       subnet_name: "public-1"                                                   #The name of the subnet where the instance is to be launched
+      elastic_ips:                                                              #List of static IPs to be assigned to created instances. Number of IPs pre-allocated should be equal to the instance count 
+        - 1.2.3.4
       volumes:                                                                  
         - EBSSpecifications:                                                    
             volume_size: 8                                                      #The size of the volume
